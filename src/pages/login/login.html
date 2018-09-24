@@ -9,7 +9,7 @@
   <ion-navbar>
     <ion-title>登入</ion-title>
     <ion-buttons>
-      <button ion-button>
+      <button ion-button (click)="dismiss()">
         <span ion-text color="primary" showWhen="ios">取消</span>
         <ion-icon name="md-close" showWhen="android"></ion-icon>
       </button>
@@ -23,15 +23,15 @@
   <ion-list>
     <ion-item>
       <ion-label stacked>手機號碼</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input type="text" [(ngModel)]="mobile"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label stacked>密碼</ion-label>
-      <ion-input type="password"></ion-input>
+      <ion-input type="password" [(ngModel)]="password"></ion-input>
     </ion-item>
   </ion-list>
   <div padding>
-    <button ion-button color="primary" block>登入</button>
+    <button ion-button color="primary" block (click)="login()">登入</button>
   </div>
   <div padding text-center>
     <button ion-button color="primary" outline>沒有帳號?註冊</button>
