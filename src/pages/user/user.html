@@ -26,15 +26,15 @@
   <ion-list>
     <ion-item>
       <ion-label>用戶暱稱</ion-label>
-      <ion-input type="text" value="fuck"></ion-input>
+      <ion-input type="text" [(ngModel)]="nickname"></ion-input>
     </ion-item>
   </ion-list>
 
   <div padding text-center class="paddingTop">
-    <button ion-button color="primary" block>保存</button>
+    <button ion-button color="primary" block (click)="updateNickName()">保存</button>
   </div>
 
   <div padding text-center class="paddingTop">
-    <button ion-button color="danger" block>取消</button>
+    <button ion-button color="danger" block (click)="logout()">登出</button>
   </div>
 </ion-content>

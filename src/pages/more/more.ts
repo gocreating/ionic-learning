@@ -42,6 +42,9 @@ export class MorePage extends BaseUI {
 
   showModal() {
     let modal = this.modalCtrl.create(LoginPage);
+    modal.onDidDismiss(() => {
+      this.loadUserPage();
+    });
     modal.present();
   }
 

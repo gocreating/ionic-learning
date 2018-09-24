@@ -50,6 +50,10 @@ export class RestProvider {
     return this.getUrlReturn(this.apiUrlUserInfo + '?userid=' + userId);
   }
 
+  updateNickName(userId, nickname): Observable<string[]> {
+    return this.getUrlReturn(this.apiUrlUpdateNickName + '?userid=' + userId + '&nickname=' + nickname);
+  }
+
   private getUrlReturn(url: string): Observable<string[]> {
     return this.http.get(url)
       .map(this.extractData)
