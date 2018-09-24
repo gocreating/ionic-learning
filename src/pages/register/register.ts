@@ -53,7 +53,15 @@ export class RegisterPage extends BaseUI {
   }
 
   doRegister() {
-    if (this.password != this.confirmPassword) {
+    if (!(/^1[34578]\d{9}$/.test(this.mobile))) {
+      super.showToast(this.toastCtrl, '手機格式不正確');
+    } else if (this.nickname.length < 3 || this.nickname.length > 10) {
+      super.showToast(this.toastCtrl, '暱稱 3~10');
+    } else if (
+      this.password.length < 6 || this.password.length > 20 || this.confirmPassword.length < 6 || this.confirmPassword.length > 20
+    ) {
+      super.showToast(this.toastCtrl, '密碼 6~20');
+    } else if (this.password != this.confirmPassword) {
       super.showToast(this.toastCtrl, '密碼不一樣');
     } else {
       let loading = super.showLoading(this.loadingCtrl, "註冊中...");
