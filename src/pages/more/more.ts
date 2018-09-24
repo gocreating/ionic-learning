@@ -1,8 +1,15 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {
+  IonicPage,
+  NavController,
+  NavParams,
+  LoadingController,
+} from 'ionic-angular';
 import { ModalController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { Storage } from '@ionic/storage';
+import { BaseUI } from '../../common/baseui';
+import { RestProvider } from '../../providers/rest/rest';
 
 /**
  * Generated class for the MorePage page.
@@ -15,7 +22,7 @@ import { Storage } from '@ionic/storage';
   selector: 'page-more',
   templateUrl: 'more.html',
 })
-export class MorePage {
+export class MorePage extends BaseUI {
 
   public notLogin: Boolean = true;
   public logined: Boolean = false;
@@ -27,7 +34,10 @@ export class MorePage {
     public navParams: NavParams,
     public modalCtrl: ModalController,
     public storage: Storage,
+    public loadingCtrl: LoadingController,
+    public rest: RestProvider,
   ) {
+    super();
   }
 
   showModal() {
@@ -42,8 +52,15 @@ export class MorePage {
   loadUserPage() {
     this.storage.get('UserId').then((val) => {
       if (val != null) {
-        this.notLogin = false;
-        this.logined = true;
+        let loading = super.showLoading(this.loadingCtrl, "載入中...");
+        this.rest.getUserInfo(val)
+          .subscribe(userinfo => {
+            this.userinfo = userinfo;
+            this.headface = userinfo['UserHeadface'] + '?' + (new Date()).valueOf();
+            this.notLogin = false;
+            this.logined = true;
+            loading.dismiss();
+          });
       } else {
         this.notLogin = true;
         this.logined = false;

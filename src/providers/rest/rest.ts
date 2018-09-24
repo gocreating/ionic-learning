@@ -46,6 +46,10 @@ export class RestProvider {
     return this.getUrlReturn(this.apiUrlRegister + '?mobile=' + mobile + '&nickname=' + nickname + '&password=' + password);
   }
 
+  getUserInfo(userId): Observable<string[]> {
+    return this.getUrlReturn(this.apiUrlUserInfo + '?userid=' + userId);
+  }
+
   private getUrlReturn(url: string): Observable<string[]> {
     return this.http.get(url)
       .map(this.extractData)
