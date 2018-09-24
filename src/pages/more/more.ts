@@ -19,6 +19,8 @@ export class MorePage {
 
   public notLogin: Boolean = true;
   public logined: Boolean = false;
+  headface: string;
+  userinfo: string[];
 
   constructor(
     public navCtrl: NavController,

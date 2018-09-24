@@ -26,10 +26,16 @@
   </div>
 
   <div *ngIf="logined">
-    <ion-card>
-      <ion-card-header text-center>
-        已登入
-      </ion-card-header>
-    </ion-card>
+    <ion-list class="marginTop">
+      <button ion-item>
+        <ion-avatar item-start>
+          <img src={{headface}} />
+        </ion-avatar>
+        <h2>fuck</h2>
+        <p>
+          查看個人主頁或編輯簡介
+        </p>
+      </button>
+    </ion-list>
   </div>
 </ion-content>
