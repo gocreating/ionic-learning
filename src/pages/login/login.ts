@@ -7,6 +7,7 @@ import {
   LoadingController,
   ToastController,
 } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 import { BaseUI } from '../../common/baseui';
 import { RestProvider } from '../../providers/rest/rest';
 
@@ -34,6 +35,7 @@ export class LoginPage extends BaseUI {
     public loadingCtrl: LoadingController,
     public toastCtrl: ToastController,
     public rest: RestProvider,
+    public storage: Storage,
   ) {
     super();
   }
@@ -51,7 +53,9 @@ export class LoginPage extends BaseUI {
     this.rest.login(this.mobile, this.password)
       .subscribe(f => {
         if (f['Status'] == 'OK') {
-
+          this.storage.set('UserId', f['UserId']);
+          loading.dismiss();
+          this.dismiss();
         } else {
           loading.dismiss();
           super.showToast(this.toastCtrl, f['StatusContent']);

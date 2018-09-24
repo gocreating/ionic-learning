@@ -14,12 +14,22 @@
 
 
 <ion-content>
-  <ion-card>
-    <ion-card-header text-center>
-      登入體驗更多功能
-    </ion-card-header>
-    <ion-card-content text-center>
-      <button ion-button outline small (click)="showModal()">登入/註冊</button>
-    </ion-card-content>
-  </ion-card>
+  <div *ngIf="notLogin">
+    <ion-card>
+      <ion-card-header text-center>
+        登入體驗更多功能
+      </ion-card-header>
+      <ion-card-content text-center>
+        <button ion-button outline small (click)="showModal()">登入/註冊</button>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <div *ngIf="logined">
+    <ion-card>
+      <ion-card-header text-center>
+        已登入
+      </ion-card-header>
+    </ion-card>
+  </div>
 </ion-content>
