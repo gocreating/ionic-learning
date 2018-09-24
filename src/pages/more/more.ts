@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import {
-  IonicPage,
   NavController,
   NavParams,
   LoadingController,
@@ -10,6 +9,7 @@ import { LoginPage } from '../login/login';
 import { Storage } from '@ionic/storage';
 import { BaseUI } from '../../common/baseui';
 import { RestProvider } from '../../providers/rest/rest';
+import { UserPage } from '../user/user';
 
 /**
  * Generated class for the MorePage page.
@@ -66,5 +66,9 @@ export class MorePage extends BaseUI {
         this.logined = false;
       }
     })
+  }
+
+  gotoUserPage() {
+    this.navCtrl.push(UserPage);
   }
 }
